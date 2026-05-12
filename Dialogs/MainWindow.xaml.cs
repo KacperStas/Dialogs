@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace PersonManager
@@ -17,8 +17,9 @@ namespace PersonManager
 
         private void AddMultipleBtn_Click(object sender, RoutedEventArgs e)
         {
-            ModelessAddWindow modelessDialog = new ModelessAddWindow(this);
+            ModelessAddWindow modelessDialog = new ModelessAddWindow();
             modelessDialog.Owner = this;
+            modelessDialog.PersonAdded += (s, person) => PeopleList.Add(person);
             modelessDialog.Show(); // Modeless call keeps main window accessible
         }
 

@@ -1,15 +1,15 @@
+using System;
 using System.Windows;
 
 namespace PersonManager
 {
     public partial class ModelessAddWindow : Window
     {
-        private MainWindow _mainWindow;
+        public event EventHandler<Person> PersonAdded;
 
-        public ModelessAddWindow(MainWindow mainWindow)
+        public ModelessAddWindow()
         {
             InitializeComponent();
-            _mainWindow = mainWindow;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -23,8 +23,8 @@ namespace PersonManager
                     TxtCity.Text.Trim()
                 );
 
-                // Instantly append to the main window list
-                _mainWindow.PeopleList.Add(newPerson);
+                // Raise event to notify parent window
+                PersonAdded?.Invoke(this, newPerson);
 
                 // Clear input fields for the next entry
                 TxtFirstName.Clear();
