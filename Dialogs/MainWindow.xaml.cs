@@ -17,12 +17,21 @@ namespace PersonManager
 
         private void AddMultipleBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Placeholder for Commit 3
+            ModelessAddWindow modelessDialog = new ModelessAddWindow(this);
+            modelessDialog.Owner = this;
+            modelessDialog.Show(); // Modeless call keeps main window accessible
         }
 
         private void AddSingleBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Placeholder for Commit 4
+            PersonModalDialog modal = new PersonModalDialog();
+            modal.Owner = this;
+
+            // .ShowDialog() halts execution until the window is closed (Modal behavior)
+            if (modal.ShowDialog() == true)
+            {
+                PeopleList.Add(modal.ResultPerson);
+            }
         }
     }
 }
