@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 
 namespace PersonManager
 {
@@ -9,6 +9,21 @@ namespace PersonManager
         public PersonModalDialog()
         {
             InitializeComponent();
+        }
+
+        public PersonModalDialog(string title, string okButtonContent, Person personToEdit)
+        {
+            InitializeComponent();
+            this.Title = title;
+            BtnOk.Content = okButtonContent;
+
+            if (personToEdit != null)
+            {
+                TxtFirstName.Text = personToEdit.FirstName;
+                TxtLastName.Text = personToEdit.LastName;
+                TxtBirthYear.Text = personToEdit.BirthYear.ToString();
+                TxtCity.Text = personToEdit.City;
+            }
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)

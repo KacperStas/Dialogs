@@ -34,5 +34,26 @@ namespace PersonManager
                 PeopleList.Add(modal.ResultPerson);
             }
         }
+
+        private void EditSelectedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (PeopleListBox.SelectedItem is Person selectedPerson)
+            {
+                int selectedIndex = PeopleListBox.SelectedIndex;
+
+                PersonModalDialog editModal = new PersonModalDialog("Edit Person", "Edit", selectedPerson);
+                editModal.Owner = this;
+
+                if (editModal.ShowDialog() == true)
+                {
+                    // Replace the old person object at the selected index
+                    PeopleList[selectedIndex] = editModal.ResultPerson;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a person to edit.", "Selection Required", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }
