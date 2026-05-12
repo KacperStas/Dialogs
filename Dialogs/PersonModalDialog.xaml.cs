@@ -6,16 +6,11 @@ namespace PersonManager
     {
         public Person ResultPerson { get; private set; }
 
-        public PersonModalDialog()
-        {
-            InitializeComponent();
-        }
-
-        public PersonModalDialog(string title, string okButtonContent, Person personToEdit)
+        public PersonModalDialog(string title = "Add Person", string actionButtonContent = "Add", Person personToEdit = null)
         {
             InitializeComponent();
             this.Title = title;
-            BtnOk.Content = okButtonContent;
+            ActionButton.Content = actionButtonContent;
 
             if (personToEdit != null)
             {
